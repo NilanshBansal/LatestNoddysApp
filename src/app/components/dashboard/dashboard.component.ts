@@ -136,7 +136,7 @@ export class DashboardComponent implements OnInit {
     /* this.fs.findItems("locations").valueChanges().subscribe(data => {
       console.log("locations: ",data);
       this.locations = data;
-
+      
     }); */
     this.fs.findObjects("locations").valueChanges().subscribe(data => {
       // console.log("locations: ",data);
@@ -147,8 +147,8 @@ export class DashboardComponent implements OnInit {
     /* this.fs.findItems("ages").valueChanges().subscribe(data => {
       console.log("ages: ",data);
       this.ages = data;
-
     
+
     }); */
     this.fs.findObjects("ages").valueChanges().subscribe(data => {
       // console.log("ages: ",data);
@@ -180,13 +180,13 @@ export class DashboardComponent implements OnInit {
 
 
   }
-  ngAfterViewChecked() {
+  /* ngAfterViewChecked() {
     var cityDropdown = (<HTMLInputElement>document.getElementById("cityDropdown"));
     cityDropdown.value = this.city;
     //console.log("dekh bhai dekh");
+  } */
 
 
-  }
 
   viewEventPage(title, allEventsClicked, occurrenceClicked) {
     this.httpservice.allEvents = allEventsClicked;
@@ -463,6 +463,7 @@ export class DashboardComponent implements OnInit {
     console.log(event.from);
   }
   cityChanged(cityInput) {
+    console.log(cityInput);
     // var cityDropdown=(<HTMLInputElement>document.getElementById("cityDropdown"));
     this.city = cityInput;
     this.reqEventsApi();
@@ -476,12 +477,12 @@ export class DashboardComponent implements OnInit {
 
   }
   updateFilter(input) {
-    var locationInput = null;
-    var cityInput = (<HTMLInputElement>document.getElementById("cityDropdown")).value;
+     /* var locationInput = null;
+     var cityInput = (<HTMLInputElement>document.getElementById("cityDropdown")).value;
     var lI = (<HTMLInputElement>document.getElementById("locationInput" + input));
     if (lI) {
       locationInput = lI.value;
-    }
+    } */
     var minPriceInputno = -1;
     var maxPriceInputno = -1;
     var startAge = -1;
@@ -496,13 +497,13 @@ export class DashboardComponent implements OnInit {
     if (isNaN(parsedDate)) {
       parsedDate = null;
     }
-    if (cityInput != 'No selection')
-      this.city = cityInput;
+    /* if (cityInput != 'No selection')
+      this.city = cityInput; */
     this.reqEventsApi();
 
-    if (locationInput == 'No selection') {
+    /* if (locationInput == 'No selection') {
       locationInput = null;
-    }
+    } */
     if (categoryInput == 'No selection') {
       categoryInput = null;
     }
@@ -544,7 +545,7 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    this.getEventsFromDb(locationInput, categoryInput, minPriceInputno, maxPriceInputno, startAge, endAge, parsedDate);
+    this.getEventsFromDb(null, categoryInput, minPriceInputno, maxPriceInputno, startAge, endAge, parsedDate);
 
     if (input == "mob") {
       document.getElementById("filterBtnMob").click();
