@@ -322,7 +322,7 @@
               
               {{allEvents[key].upcoming_occurrences[occurrence]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}</b></span>
       <br /> 
-      <a (click)="viewEventPage(allEvents[key].title,allEvents,occurrence)" style="color:#333333; font-weight:700"> {{allEvents[key].myDisplayTitle}}</a>
+      <a (click)="modal.show(key,allEvents,true,occurrence)"  style="color:#333333; font-weight:700"> {{allEvents[key].myDisplayTitle}}</a>
               <!-- <a style="color:#333333; font-weight:700"> {{allEvents[key].myDisplayTitle}}</a> -->
               <br /> <br />
         
@@ -348,7 +348,7 @@
       
             <br><br>
         <div class="social-icon" style="align:right; padding-right:10px; float:right">
-                <a class="btn btn-default" (click)="modal.show(key,allEvents,true,occurrence)"><i class="fa fa-plus"></i></a>
+                <a class="btn btn-default" (click)="viewEventPage(allEvents[key].title,allEvents,occurrence)"><i class="fa fa-plus"></i></a>
                <button id="interestedBtn" (click)="modal2.show(key,allEvents,false,null)" [hidden]="true"></button>
 
         <a class="btn btn-default" (click)="interested(key,allEvents,occurrence)"><i class="fa fa-heart"></i></a>                   
