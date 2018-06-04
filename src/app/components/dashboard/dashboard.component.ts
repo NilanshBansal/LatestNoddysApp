@@ -324,10 +324,10 @@ export class DashboardComponent implements OnInit {
         // console.log(items.length);
         //  console.log("out");
 
-        if (Date.parse(items[i]["upcoming_occurrences"][items[i]["upcoming_occurrences"].length - 1]["date"].split(':')[0]) < this.todayTimestamp) {
+        if (Date.parse(items[i]["upcoming_occurrences"][items[i]["upcoming_occurrences"].length - 1]["end_date"].split(':')[0]) < this.todayTimestamp) {
           // console.log("in");
           // console.log(i);
-          // console.log(Date.parse(items[i]["upcoming_occurrences"][items[i]["upcoming_occurrences"].length -1]["date"].split(':')[0]));
+          // console.log(Date.parse(items[i]["upcoming_occurrences"][items[i]["upcoming_occurrences"].length -1]["end_date"].split(':')[0]));
           //  console.log(this.todayTimestamp);
           //items.splice(i,1);
           if (spliceIndex.indexOf(i) == -1) {
