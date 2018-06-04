@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { HttpService } from '../../services/http.service';
 import { FacebookService, UIParams, UIResponse, InitParams } from 'ngx-facebook';
 import { Router } from '@angular/router';
+import {ActivatedRoute,Params} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
     public httpservice: HttpService,
     private facebookService: FacebookService,
     private router: Router,
+    private route:ActivatedRoute
   ) {
     this.Math = Math;
     let initParams: InitParams = {
@@ -52,7 +54,8 @@ export class DashboardComponent implements OnInit {
   td = new Date();
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   todaysDate = this.td.getDate() + this.months[this.td.getMonth()] + this.td.getFullYear();
-  city = "Delhi NCR";
+  // city = "Delhi NCR";
+  city;
   locations;
   eventsArray = [];
   ages;
@@ -125,7 +128,13 @@ export class DashboardComponent implements OnInit {
       this.city=prompt("Enter city","Delhi NCR");
       localStorage.setItem('city',this.city);
     } */
-
+    var _city=this.route.snapshot.queryParamMap.get('city');
+    if(_city!=null){
+      this.city=_city;
+    }
+    else{
+      this.city="Delhi NCR";
+    }
     this.reqEventsApi();
 
     this.currentUrl = window.location.href;
@@ -136,7 +145,7 @@ export class DashboardComponent implements OnInit {
     /* this.fs.findItems("locations").valueChanges().subscribe(data => {
       console.log("locations: ",data);
       this.locations = data;
-      
+
     }); */
     this.fs.findObjects("locations").valueChanges().subscribe(data => {
       // console.log("locations: ",data);
@@ -147,8 +156,8 @@ export class DashboardComponent implements OnInit {
     /* this.fs.findItems("ages").valueChanges().subscribe(data => {
       console.log("ages: ",data);
       this.ages = data;
-    
 
+    
     }); */
     this.fs.findObjects("ages").valueChanges().subscribe(data => {
       // console.log("ages: ",data);
@@ -253,7 +262,7 @@ export class DashboardComponent implements OnInit {
       var len = items.length;
       // console.log(len);
       //  console.log(items);
-
+      
       if (locationInput != null && data.length != spliceIndex.length) {
         for (var i = 0; i < items.length; i++) {
 

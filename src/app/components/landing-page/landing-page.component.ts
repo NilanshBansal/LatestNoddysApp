@@ -21,12 +21,14 @@ export class LandingPageComponent implements OnInit {
     categories;
     ages;
     locations;
-
+    city = "Delhi NCR";
+    objectKeys = Object.keys;
     ngOnInit() {
+        console.log(this.city);
         this.fs.findObjects("locations").valueChanges().subscribe(data => {
              console.log("locations: ",data);
             this.locations = data;
-
+            
         });
 
         this.fs.findObjects("ages").valueChanges().subscribe(data => {
@@ -42,6 +44,11 @@ export class LandingPageComponent implements OnInit {
 
 
         });
+
+        this.fs.filterdata('featured',true).valueChanges().subscribe(data=>{
+            console.log("see");
+            console.log(data);
+          });
 
 
     }
@@ -274,4 +281,21 @@ export class LandingPageComponent implements OnInit {
         });
 
     } */
+
+
+    cityChanged(cityInput) {
+        this.city = cityInput;
+        let that = this;
+        /* setTimeout(function () {
+          that.getEventsFromDb(null, null, null, null, null, null, null);
+        }, 500); */
+    
+      }
+
+      dashboardPage(_city) {
+        // this.httpservice.allEvents = allEventsClicked;
+        // this.router.navigate(['/viewEvent'], { queryParams: { 'title': title, 'occurrence': occurrenceClicked } });
+        console.log(_city);
+        this.router.navigate(['/'],{queryParams:{'city':_city}});
+      }
 }
