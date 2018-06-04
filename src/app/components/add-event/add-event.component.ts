@@ -181,10 +181,10 @@ export class AddEventComponent implements OnInit {
       "mySource":"noddysApp",
       "upcoming_occurrences":{
         0:{
-          "date":startDate + ':12-00',
+          "date":startDate,
           "start_time":startTime,
           "end_time":endTime,
-          "end_date":endDate + ':12-00',
+          "end_date":endDate,
           "single_occurrence":"",
           "timezone":"",
           "enable_ticketing":"",

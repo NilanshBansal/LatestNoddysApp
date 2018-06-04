@@ -251,8 +251,8 @@
         <div *ngFor="let key of objectKeys(allEvents)">
          
         <div *ngFor="let occurrence of objectKeys(allEvents[key].upcoming_occurrences)">
-        <div *ngIf="parseDate(allEvents[key].upcoming_occurrences[allEvents[key].upcoming_occurrences.length -1]['end_date'].split(':')[0])>=todayTimestamp && allEvents[key]['myAdminApproved']" >
-          <div class="row premium listing-row" *ngIf="parseDate(allEvents[key].upcoming_occurrences[occurrence]['end_date'].split(':')[0])>=todayTimestamp" style="-webkit-box-shadow: 0px 0px 8px 1px rgba(163,161,163,1);
+        <div *ngIf="parseDate(allEvents[key].upcoming_occurrences[allEvents[key].upcoming_occurrences.length -1]['date'].split(':')[0])>=todayTimestamp && allEvents[key]['myAdminApproved']" >
+          <div class="row premium listing-row" *ngIf="parseDate(allEvents[key].upcoming_occurrences[occurrence]['date'].split(':')[0])>=todayTimestamp" style="-webkit-box-shadow: 0px 0px 8px 1px rgba(163,161,163,1);
             -moz-box-shadow: 0px 0px 8px 1px rgba(163,161,163,1);
             box-shadow: 0px 0px 8px 1px rgba(163,161,163,1);border-bottom:1px solid #fff;margin-top: 20px;margin-bottom:20px;">
 
