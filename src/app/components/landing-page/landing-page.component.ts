@@ -17,12 +17,18 @@ export class LandingPageComponent implements OnInit {
         public httpservice: HttpService,
         private router: Router,
 
-    ) { }
+    ) {this.Math = Math; }
     categories;
     ages;
     locations;
     city = "Delhi NCR";
+    Math: any;
     objectKeys = Object.keys;
+    featuredEvents = [];
+    parseDate = Date.parse;
+    today = new Date();
+    todayTimestamp = Date.parse(this.today.toString());
+    occurrenceIndex = 0;
     ngOnInit() {
         console.log(this.city);
         this.fs.findObjects("locations").valueChanges().subscribe(data => {
@@ -46,10 +52,18 @@ export class LandingPageComponent implements OnInit {
         });
 
         this.fs.filterdata('featured',true).valueChanges().subscribe(data=>{
-            console.log("see");
             console.log(data);
+            this.featuredEvents = data;
+            this.featuredEvents.forEach(el=>{
+                console.log('seeee',el);
+                el.upcoming_occurrences.forEach((occurrence,idx) =>{
+                    if(this.parseDate(occurrence['date'].split(':')[0]) >= this.todayTimestamp){
+                        this.occurrenceIndex = idx;
+                        console.log(idx);
+                    }
+                });
+            });
           });
-
 
     }
 
