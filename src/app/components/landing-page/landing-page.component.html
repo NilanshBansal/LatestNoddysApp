@@ -56,8 +56,7 @@
 <div *ngFor="let key of objectKeys(featuredEvents)">
 <div class="featured_container col-lg-4" >
 <div class="featured_image">
-<!-- <img style=" max-height:auto; width:100%; align:center;" [src]="featuredEvents[key].img_url" alt="Card image"> -->
-<img style=" max-height:auto; width:100%; align:center;" alt="Card image"> 
+<img style=" max-height:auto; width:100%; align:center;" [src]="featuredEvents[key].img_url" alt="Card image">
 
 </div>
 <div class="featured_details">
@@ -65,7 +64,7 @@
 <i class="fa fa-clock-o"></i><span> {{featuredEvents[key].upcoming_occurrences[occurrenceIndex]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}</span><br />
 <i class="fa fa-map" *ngIf="featuredEvents[key].venue['name']!=''"></i><span><span> {{featuredEvents[key].venue["name"] + ", " }}</span>{{featuredEvents[key].venue["city"]}}</span><br/>
 <i class="fa fa-rupee"></i><span *ngIf="featuredEvents[key].price[0]['value']!='Not Specified'">{{Math.round(featuredEvents[key].price[0]["value"])}}</span><br/>
-<div align="right"><button class="btn btn-danger"><i class="fa fa-plus"></i><span> View More</span></button></div>
+<div align="right"><button class="btn btn-danger" (click)="dashboardPage(featuredEvents[key].myCity)"><i class="fa fa-plus"></i><span> View More</span></button></div>
 
 </div>
 </div>
